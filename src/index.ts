@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import diagnoseService from "./services/diagnoseService";
+import patientService from "./services/patientService";
 
 
 const PORT = process.env.PORT || 3001;
@@ -17,6 +18,11 @@ app.get("/api/ping", (_req, res) => {
 app.get("/api/diagnoses", (req, res) => {
     const diagnoses = diagnoseService.getDiagnoses();
     res.json({"diagnoses": diagnoses});
+});
+
+app.get("/api/patients", (req, res) => {
+    const patients = patientService.getPatients();
+    res.send(patients);
 });
 
 app.listen(PORT, () => {
